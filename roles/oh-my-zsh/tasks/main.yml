@@ -1,0 +1,13 @@
+---
+ - name: install zsh and curl
+   apt: pkg={{item}} state=present
+   with_items:
+    - zsh
+    - curl
+    - git
+
+ - name: install on-my-zsh
+   command: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
+ - name: chsh
+   command: /usr/bin/chsh -s /bin/zsh 

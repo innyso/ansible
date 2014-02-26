@@ -1,0 +1,6 @@
+---
+ - hosts: all
+   sudo: yes
+   roles:
+    - common
+    - oh-my-zsh
