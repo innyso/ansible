@@ -6,8 +6,18 @@
     - curl
     - git
 
- - name: install on-my-zsh
-   command: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+ - name: make sure .oh-my-zsh folder exist
+   file: path=/home/{{item}}/.oh-my-zsh owner={{item}} state=directory
+   with_items: users
+
+ - name: clone oh-my-zsh repo
+   git: repo=git://github.com/robbyrussell/oh-my-zsh.git  dest=/home/{{item}}/.oh-my-zsh
+   with_items: users
+
+ - name: create zsh config
+   copy: src=/home/{{item}}/.oh-my-zsh/templates/zshrc.zsh-template  dest=/home/{{item}}/.zshrc owner={{item}}
+   with_items: users
 
  - name: chsh
-   command: /usr/bin/chsh -s /bin/zsh 
+   command: /usr/bin/chsh -s /bin/zsh {{item}}
+   with_items: users
