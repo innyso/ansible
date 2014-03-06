@@ -23,3 +23,7 @@
    sudo: yes
    command: /usr/bin/chsh -s /bin/zsh {{item}}
    with_items: users
+
+ - name: this should be in git for setting alias
+   template: src=gitconfig.j2 dest=/home/{{item}}/.gitconfig
+   with_items: users
