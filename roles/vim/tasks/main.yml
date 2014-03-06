@@ -10,6 +10,7 @@
  - name: create customize .vimrc
    template: src=vimrc.j2 dest=/home/{{item}}/.vimrc
    with_items: users
-
+ 
  - name: install all plugins
    command: vim +BundleInstall +qall
+ 
