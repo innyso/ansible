@@ -20,8 +20,6 @@
     - libtool
     - libffi-dev
 
+ # should add check to make sure rvm is not installed
  - name: download rvm
-   command: /usr/bin/curl -L get.rvm.io | bash -s stable
-
- - name: load rvm
-   command: source ~/.rvm/script/rvm
+   shell: /usr/bin/curl -L get.rvm.io | bash -s stable creates=/home/vagrant/.rvm
